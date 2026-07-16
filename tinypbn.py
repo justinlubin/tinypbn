@@ -24,7 +24,7 @@ def size(sketch):
 
 
 def expand(sketch):
-    if size(sketch) > 5:
+    if size(sketch) >= 5:
         return []
     elif sketch == ...:
         return [0, 1, 2, 3, "in", ("negate", ...), ("+", ..., ...), ("*", ..., ...)]
