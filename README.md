@@ -1,7 +1,9 @@
-# (Work-in-progress) tinypbn: A pedagogical Programming by Navigation system in ~50 lines of Python
+# tinypbn: A pedagogical Programming by Navigation system in ~50 lines of Python
+
+**Warning:** This is a work-in-progress!
 
 - If you want to dive into the code, check out
-  [tinypbn.py](./tinypbn.py)!
+  [`tinypbn.py`](./tinypbn.py)!
 - If you want a
   [literate programming](https://en.wikipedia.org/wiki/Literate_programming)
   exposition of the code, read on!
@@ -64,7 +66,7 @@ its core essence! Let's dive into exploring it together now.
 
 * * *
 
-## Expressions, _a.k.a._ the programs we'll be generating
+### Expressions, _a.k.a._ the programs we'll be generating
 
 Expressions in our language will be either a literal
 integer, a string representing a variable, a hole (represented as `...` in Python), or
@@ -98,7 +100,7 @@ starts with a function like this!
 
 **Question to ponder.** What would obstacle might we run into if we evaluate a very, very large term? (Try it!) How could we avoid this obstacle?
 
-## Specifications, _a.k.a._ our notion of validity for expressions
+### Specifications, _a.k.a._ our notion of validity for expressions
 
 Next, we'll take input-output example satisfaction as our notion of validity for expressions.
 A specification will be represented as a list of pairs of input environments and output values, where input environments are a dictionary
@@ -115,7 +117,7 @@ Because programs with holes evaluate NaN and we require that output values are i
 
 **Question to ponder.** We've discussed logical specifications and input-output example specifications. What other kinds of specifications can you think of? Additionally, are there any variants of these two kinds of specification that seem interesting to you?
 
-## Our search space of expressions
+### Our search space of expressions
 
 For simplicity, we'll make some restrictions about the possible expressions we'll
 generate. In particular, we'll only consider expressions:
