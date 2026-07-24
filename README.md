@@ -2,6 +2,13 @@
 
 **WORK IN PROGRESS! :-)**
 
+If you want to dive into the code, check out [tinypbn.py](./tinypbn.py)!
+If you want a
+[literate programming](https://en.wikipedia.org/wiki/Literate_programming)
+style exposition of the code, read on!
+
+* * *
+
 Underspecifications are everywhere!
 
 - The experiment a biologist runs in the wet lab is an underspecification for
