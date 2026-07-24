@@ -35,9 +35,9 @@ Underspecifications are everywhere!
   programmer desires.
 - A program is an underspecification for all programs that are semantically
   equivalent to it. This is, roughly*, the premise of compilers!
-  _(*Compilers actually care about a property called "semantic refinement" or
-  "backward simulation"  rather than "semantic equivalence," but that's neither
-  here nor there for the purposes of this essay.)_
+  _(*Compilers actually typically must respect a property called "semantic
+  refinement" or "backward simulation"  rather than "semantic equivalence," but
+  that's neither here nor there for the purposes of this essay.)_
 
 Even when you think you have a precise logical specification, I'd bet you're
 still actually dealing with an underspecification. Consider the traditional
