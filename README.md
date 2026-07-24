@@ -212,28 +212,37 @@ def fill(spec, sketch):
         worklist.extend(expand(candidate))
 ```
 
-Because of our restrictions at the start of this section, there are only
-finitely-many possible expressions. Therefore, because an expression only ever
-gets added to the worklist at most once, this algorithm will always terminate.
+**Question to ponder:** How many times can a given expression be added to the
+worklist?
+
+**Question to ponder:** Does this algorithm always terminate? Why or why not?
+
+**Question to ponder:** If there is a satisfying solution to the specification
+in the search space, will `fill` return it? If so, why? If not, can you think
+of a rewording of this property to make it true?
 
 **Question to ponder:** What would happen if our `expand` function provided
 expansions on more than just the left-most hole? How (if at all) do your answers
 to the previous questions change?
 
-**Exercise:** Prove that an expression only ever gets added to the worklist at most once.
+**Question to ponder:** What would happen if we removed the restrictions at the
+start of this section? How (if at all) do your answers to the previous questions
+change?
 
-**Exercise:** Prove that if there is a satisfying solution to the specification in the search space,
-`fill` will return such a solution.
+**Question to ponder:** Will `fill` be faster when there is a satisfying
+solution or when there is not a satisfying solution? How could you speed up the
+slower case?
 
-**Question to ponder:** What happens if there is no satisfying solution? How could you speed up this case?
+**Question to ponder:** Will adding more examples increase or decrease the
+running time of this algorithm? Are there ways that you could imagine tweaking
+this algorithm (without changing its input-output behavior) to change your
+answer to this question?
 
-**Question to ponder:** What would happen if we removed the restrictions at the start of this section?
-
-**Question to ponder:** Will adding more examples increase or decrease the running time of
-this algorithm? Are there ways that you could imagine tweaking this algorithm to change your answer to this question?
-
-**Exercise:** `fill`, as implemented, takes what is called a top-down term enumeration strategy.
-Why do you think it's called that? Think about what a bottom-up strategy would look like and implement it.
-_Hint:_ The implementation should not rely on `expand` or any other helper function, and should be quite a bit simpler than the
-code we have here; I would have used bottom-up enumeration here if we didn't need the `expand` function later on!
+**Question to ponder:** We discussed that `fill`, as implemented, takes what is
+called a top-down enumeration strategy. Why do you think it's called that?
+Think about what a "bottom-up" enumeration strategy would look like and
+implement it. _Hint:_ The implementation should not rely on `expand` or any
+other helper function, and in fact should be quite a bit simpler than the
+code for `expand` and `fill`; I would have used bottom-up enumeration here if
+we didn't need the `expand` function later on!
 
