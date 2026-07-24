@@ -53,7 +53,8 @@ refinement process, a Programming by Navigation system is required to give you
 a set of possible refinements ("next steps") that satisfies:
 
 - **Strong Soundness:** All provided steps are en route to a valid solution.
-- **Strong Completeness:** All remaining valid solutions are reachable by choosing one of the provided steps.
+- **Strong Completeness:** All remaining valid solutions are reachable by
+  choosing one of the provided steps.
 
 Strong Soundness means you won't go down a rabbit hole of exploring invalid
 program space. Strong Completeness means the system won't take any possible
@@ -64,19 +65,32 @@ but I
 think that my ~50 line [`tinypbn.py`](./tinypbn.py) file demonstrates some of
 its core essence! Let's dive into exploring it together now.
 
-* * *
+**Pro tip:** Before reading the implementation of each function,
+*try to implement it yourself!!* I promise, it's really fun!!
 
 ### Expressions, _a.k.a._ the programs we'll be generating
 
-Expressions in our language will be either a literal
-integer, a string representing a variable, a hole (represented as `...` in Python), or
-an operation applied to a set of arguments (represented as a tuple whosse first component is the operator name and whose remaining components are the arguments).
-Operators will just be negation, addition, and multiplication. Because our expressions can have holes in them (_i.e._, they can be incompelte), we'll call them "sketches."
+Expressions in our language will be either:
 
-We'll start by defining our evaluation function. Its only quirk is that
-evaluating a hole results in a floating point NaN value, which will propagate
-through all subsequent operations. That means that any sketch with a hole in it
-will evaluate to NaN.
+- A literal integer,
+- A variable (represented in Python as a string),
+- A hole signifying an incomplete program fragment (represented in Python as
+  `...` in Python, also called
+  [Ellipsis](https://docs.python.org/dev/library/constants.html#Ellipsis)), or
+- An operation applied to a list of arguments (represented as a tuple whose
+  first argument is the operator and whose remaining components are the
+  arguments). Operations will be negation (`negate`, one argument), addition
+  (`+`, two arguments), and multiplication (`*`, two arguments).
+
+Because our expressions can have holes in them, we'll call them "sketches,"
+following [tradition](https://people.csail.mit.edu/asolar/SynthesisCourse/Lecture7.htm).
+
+We'll start by defining our evaluation function. Because sketches can
+have variables, our evaluation function will need access to an environment
+(represented in Python as a dictionary) that maps variable names (strings)
+to values (integers). The only other quirk is that evaluating a hole results
+in a floating point NaN value, which will propagate through all subsequent
+operations. This means that any sketch with a hole in it will evaluate to NaN.
 
 ```python
 def eval(env, sketch):
@@ -98,24 +112,37 @@ If you've never written a programming language before—congrats! You've just
 written your very first interpreter for a simple programming language. It all
 starts with a function like this!
 
-**Question to ponder.** What would obstacle might we run into if we evaluate a very, very large term? (Try it!) How could we avoid this obstacle?
+**Question to ponder.** What obstacle might we run into if we evaluate a very,
+very large expression? (Try it!) How could we avoid this obstacle?
 
 ### Specifications, _a.k.a._ our notion of validity for expressions
 
-Next, we'll take input-output example satisfaction as our notion of validity for expressions.
-A specification will be represented as a list of pairs of input environments and output values, where input environments are a dictionary
-mapping variable names (strings) to values (integers), and output values are simply integers.
+Next, we'll take input-output example satisfaction as our notion of validity for
+expressions. We'll represent such a specification as a list of pairs, where:
 
-We can check if a sketch satisfies a specification by simply checking if evaluating it in each input environment results in the corresponding output value.
+- The first component of the pair is an input environment (a dictionary, as
+  above), and
+- The second component of the pair is an output value (integer) that a sketch
+  should evaluate to in the given input environment.
+
+**Pause!** How would you implement a function that checks this notion of
+satisfaction?
+
+We can check if a sketch satisfies a specification by checking if evaluating it
+in each input environment results in the corresponding output value.
 
 ```python
 def satisfies(spec, sketch):
     return all(eval(env, sketch) == out for env, out in spec)
 ```
 
-Because programs with holes evaluate NaN and we require that output values are integers, only programs without holes can satisfy a non-empty specification.
+**Question to ponder.** Using this notion of satisfaction, what kind(s) of
+specifications can sketches with holes in them satisfy?
 
-**Question to ponder.** We've discussed logical specifications and input-output example specifications. What other kinds of specifications can you think of? Additionally, are there any variants of these two kinds of specification that seem interesting to you?
+**Question to ponder.** We've discussed logical specifications and input-output
+example specifications. What other kinds of specifications can you think of?
+Additionally, are there any variants of these two kinds of specification that
+seem interesting to you?
 
 ### Our search space of expressions
 
