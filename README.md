@@ -1,11 +1,10 @@
-# tinypbn: A pedagogical Programming by Navigation system in ~50 lines of Python
+# (Work-in-progress) tinypbn: A pedagogical Programming by Navigation system in ~50 lines of Python
 
-**WORK IN PROGRESS! :-)**
-
-If you want to dive into the code, check out [tinypbn.py](./tinypbn.py)!
-If you want a
-[literate programming](https://en.wikipedia.org/wiki/Literate_programming)
-style exposition of the code, read on!
+- If you want to dive into the code, check out
+  [tinypbn.py](./tinypbn.py)!
+- If you want a
+  [literate programming](https://en.wikipedia.org/wiki/Literate_programming)
+  exposition of the code, read on!
 
 * * *
 
@@ -13,30 +12,55 @@ Underspecifications are everywhere!
 
 - The experiment a biologist runs in the wet lab is an underspecification for
   the actual computational analysis the scientist wants to run on their data.
-- In a proof search system like [Rust's trait system](https://doc.rust-lang.org/book/ch10-02-traits.html) or [Aesop tactic](https://github.com/leanprover-community/aesop) for [Lean](https://lean-lang.org/),
-  a failing proof search is an underspecification for the modifications the programmer needs to make to the underlying proof system in order for the proof search to go through (_e.g._, implementing Rust traits or proving Lean lemmas)
+- In a proof search system like
+  [Rust's trait system](https://doc.rust-lang.org/book/ch10-02-traits.html)
+  or the
+  [Aesop tactic](https://github.com/leanprover-community/aesop)
+  for
+  [Lean](https://lean-lang.org/),
+  a failing proof search is an underspecification for the modifications the
+  programmer needs to make to the underlying proof system in order for the proof
+  search to go through (_e.g._, implementing Rust traits or proving Lean lemmas)
 - In a user-schedulable language like [Halide](https://halide-lang.org/),
   a program and an initial schedule are an underspecification for a refined
   schedule that a performance engineer actually wants.
-- A merge conflict is an underspecification for the particular resolution the programmer desires.
-- A program is an underspecification for all programs that are equivalent to it. (This is the premise of optimizing compilers!)
+- A merge conflict is an underspecification for the particular resolution the
+  programmer desires.
+- A program is an underspecification for all programs that are equivalent to it.
+  This is (roughly) the premise of compilers!
 
-Even when you think you have a precise logical specification, odds are you are actually still dealing with an underspecification.
-Consider the venerable sorting algorithm, and it's traditional logical specification:
-forall i = 0...len(out)-1 : out[i] < out[i+1] AND
-exists permutation sigma : s.t out = in o sigma.
-This precise logical specification specifies bubble sort, insertion sort, selection sort, merge sort, heap sort, quick sort, ... and so on!
+Even when you think you have a precise logical specification, I'd bet you're
+still actually dealing with an underspecification. Consider the traditional
+logical specification for the venerable sorting algorithm taking in an array
+`in` and returning an array `out`:
 
-But in all of the above cases, we often want to arrive at a *particular* solution to the original underspecification.
+    ∀ i = 1, ..., len(out) - 1. out[i] < out[i + 1] ∧
+    ∃ permutation σ. out = in ◦ σ
 
-We can do so view a process of **specification refinement.**
-[Programming by Navigation](https://dl.acm.org/doi/10.1145/3729264) is a
+This precise logical specification specifies bubble sort, insertion sort,
+selection sort, merge sort, heap sort, quick sort, ... and so on! (Perhaps it's
+not so precise after all?)
+
+In all of the above cases, we often want to arrive at a *particular* solution to
+the original underspecification. We can view this as a process of
+*specification refinement*.
+[**Programming by Navigation**](https://dl.acm.org/doi/10.1145/3729264) is a
 technique I've been working on to support programmers interactively refine
-underspecifications.
+underspecifications. What's neat about it is that, at each step of the
+refinement process, a Programming by Navigation system is required to give you
+a set of possible refinements ("next steps") that satisfies:
 
-Let's dive in and make a tiny Programming by Navigation system. To fit in this
-short post, it'll be limited and slow, but it will capture some of the core
-essence of Programming by Navigation!
+- **Strong Soundness:** All provided steps are en route to a valid solution.
+- **Strong Completeness:** All remaining valid solutions are reachable by choosing one of the provided steps.
+
+Strong Soundness means you won't go down a rabbit hole of exploring invalid
+program space. Strong Completeness means the system won't take any possible
+solutions away from you. To achieve these guarantees in practice can be
+[pretty](https://dl.acm.org/doi/10.1145/3729264)
+[involved](https://dl.acm.org/doi/10.1145/3808344),
+but I
+think that my ~50 line [`tinypbn.py`](./tinypbn.py) file demonstrates some of
+its core essence! Let's dive into exploring it together now.
 
 * * *
 
