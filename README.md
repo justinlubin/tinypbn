@@ -173,6 +173,11 @@ expression" is either:
 - A variable, or
 - The application of an operator to the correct number of holes.
 
+If there are no holes (or the sketch is already at our size limit), the function
+should return no expansions.
+
+(**Pause!** If you want a bit of a challenge, try to implement this function!)
+
 ```python
 def expand(sketch):
     if size(sketch) >= 6:
@@ -189,10 +194,13 @@ def expand(sketch):
     return []
 ```
 
-Using these building blocks, we can write a traditional program synthesis algorithm
-in just a few lines of code! It will be a worklist algorithm, where we'll start
-at a user-provided sketch and repeatedly expand the head of the worklist until
-we find a sketch that matches the provided specification.
+Using these building blocks, we can write a traditional program synthesis
+algorithm called "top-down enumeration" in just a few lines of code! It will be
+a worklist algorithm where we start with a user-provided sketch and repeatedly
+`expand` the head of the worklist until we find a sketch that matches the
+provided specification.
+
+(**Pause!** Try to implement this function!)
 
 ```python
 def fill(spec, sketch):
@@ -207,6 +215,10 @@ def fill(spec, sketch):
 Because of our restrictions at the start of this section, there are only
 finitely-many possible expressions. Therefore, because an expression only ever
 gets added to the worklist at most once, this algorithm will always terminate.
+
+**Question to ponder:** What would happen if our `expand` function provided
+expansions on more than just the left-most hole? How (if at all) do your answers
+to the previous questions change?
 
 **Exercise:** Prove that an expression only ever gets added to the worklist at most once.
 
