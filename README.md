@@ -8,6 +8,11 @@
   [literate programming](https://en.wikipedia.org/wiki/Literate_programming)
   exposition of the code, read on!
 
+In any case, please feel free to email me at
+[justinlubin@berkeley.edu](mailto://justinlubin@berkeley.edu)
+to chat about your thoughts! I'm happy to discuss the "questions to ponder"
+peppered throughout the essay below or anything else you'd like to chat about!
+
 * * *
 
 Underspecifications are everywhere!
@@ -67,7 +72,6 @@ its core essence! Let's dive into exploring it together now.
 
 **Pro tip:** Before reading the implementation of each function,
 *try to implement it yourself!!* I promise, it's really fun!!
-
 ### Expressions, _a.k.a._ the programs we'll be generating
 
 Expressions in our language will be either:
@@ -112,8 +116,8 @@ If you've never written a programming language before—congrats! You've just
 written your very first interpreter for a simple programming language. It all
 starts with a function like this!
 
-**Question to ponder:** What obstacle might we run into if we evaluate a very,
-very large expression? (Try it!) How could we avoid this obstacle?
+- **Question to ponder #1:** What obstacle might we run into if we evaluate a
+very, very large expression? (Try it!) How could we avoid this obstacle?
 
 ### Specifications, _a.k.a._ our notion of validity for expressions
 
@@ -212,37 +216,29 @@ def fill(spec, sketch):
         worklist.extend(expand(candidate))
 ```
 
-**Question to ponder:** How many times can a given expression be added to the
+- **Question to ponder:** How many times can a given expression be added to the
 worklist?
-
-**Question to ponder:** Does this algorithm always terminate? Why or why not?
-
-**Question to ponder:** If there is a satisfying solution to the specification
+- **Question to ponder:** Does this algorithm always terminate? Why or why not?
+- **Question to ponder:** If there is a satisfying solution to the specification
 in the search space, will `fill` return it? If so, why? If not, can you think
 of a rewording of this property to make it true?
-
-**Question to ponder:** What would happen if our `expand` function provided
+- **Question to ponder:** What would happen if our `expand` function provided
 expansions on more than just the left-most hole? How (if at all) do your answers
 to the previous questions change?
-
-**Question to ponder:** What would happen if we removed the restrictions at the
+- **Question to ponder:** What would happen if we removed the restrictions at the
 start of this section? How (if at all) do your answers to the previous questions
 change?
-
-**Question to ponder:** Will `fill` be faster when there is a satisfying
+- **Question to ponder:** Will `fill` be faster when there is a satisfying
 solution or when there is not a satisfying solution? How could you speed up the
 slower case?
-
-**Question to ponder:** Will adding more examples increase or decrease the
+- **Question to ponder:** Will adding more examples increase or decrease the
 running time of this algorithm? Are there ways that you could imagine tweaking
 this algorithm (without changing its input-output behavior) to change your
 answer to this question?
-
-**Question to ponder:** We discussed that `fill`, as implemented, takes what is
+- **Question to ponder:** We discussed that `fill`, as implemented, takes what is
 called a top-down enumeration strategy. Why do you think it's called that?
 Think about what a "bottom-up" enumeration strategy would look like and
 implement it. _Hint:_ The implementation should not rely on `expand` or any
 other helper function, and in fact should be quite a bit simpler than the
 code for `expand` and `fill`; I would have used bottom-up enumeration here if
 we didn't need the `expand` function later on!
-
