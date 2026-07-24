@@ -140,13 +140,12 @@ def satisfies(spec, sketch):
     return all(eval(env, sketch) == out for env, out in spec)
 ```
 
-**Question to ponder:** Using this notion of satisfaction, what kind(s) of
+- **Question to ponder #2:** Using this notion of satisfaction, what kind(s) of
 specifications can sketches with holes in them satisfy?
-
-**Question to ponder:** We've discussed logical specifications and input-output
-example specifications. What other kinds of specifications can you think of?
-Additionally, are there any variants of these two kinds of specification that
-seem interesting to you?
+- **Question to ponder #3:** We've discussed logical specifications and
+input-output example specifications. What other kinds of specifications can
+you think of? Additionally, are there any variants of these two kinds of
+specification that seem interesting to you?
 
 ### Our search space of expressions
 
@@ -216,29 +215,30 @@ def fill(spec, sketch):
         worklist.extend(expand(candidate))
 ```
 
-- **Question to ponder:** How many times can a given expression be added to the
+- **Question to ponder #4:** How many times can a given expression be added to the
 worklist?
-- **Question to ponder:** Does this algorithm always terminate? Why or why not?
-- **Question to ponder:** If there is a satisfying solution to the specification
-in the search space, will `fill` return it? If so, why? If not, can you think
-of a rewording of this property to make it true?
-- **Question to ponder:** What would happen if our `expand` function provided
+- **Question to ponder #5:** Does this algorithm always terminate? Why or why
+not?
+- **Question to ponder #6:** If there is a satisfying solution to the
+specification in the search space, will `fill` return it? If so, why? If not,
+can you think of a rewording of this property to make it true?
+- **Question to ponder #7:** What would happen if our `expand` function provided
 expansions on more than just the left-most hole? How (if at all) do your answers
 to the previous questions change?
-- **Question to ponder:** What would happen if we removed the restrictions at the
-start of this section? How (if at all) do your answers to the previous questions
-change?
-- **Question to ponder:** Will `fill` be faster when there is a satisfying
+- **Question to ponder #8:** What would happen if we removed the restrictions at
+the start of this section? How (if at all) do your answers to the previous
+questions change?
+- **Question to ponder #9:** Will `fill` be faster when there is a satisfying
 solution or when there is not a satisfying solution? How could you speed up the
 slower case?
-- **Question to ponder:** Will adding more examples increase or decrease the
+- **Question to ponder #10:** Will adding more examples increase or decrease the
 running time of this algorithm? Are there ways that you could imagine tweaking
 this algorithm (without changing its input-output behavior) to change your
 answer to this question?
-- **Question to ponder:** We discussed that `fill`, as implemented, takes what is
-called a top-down enumeration strategy. Why do you think it's called that?
-Think about what a "bottom-up" enumeration strategy would look like and
+- **Question to ponder #11:** We discussed that `fill`, as implemented, takes
+what is called a top-down enumeration strategy. Why do you think it's called
+that? Think about what a "bottom-up" enumeration strategy would look like and
 implement it. _Hint:_ The implementation should not rely on `expand` or any
-other helper function, and in fact should be quite a bit simpler than the
-code for `expand` and `fill`; I would have used bottom-up enumeration here if
-we didn't need the `expand` function later on!
+other helper function, and in fact should be quite a bit simpler than the code
+for `expand` and `fill`; I would have used bottom-up enumeration here if we
+didn't need the `expand` function later on!
