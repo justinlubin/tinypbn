@@ -242,3 +242,10 @@ implement it. _Hint:_ The implementation should not rely on `expand` or any
 other helper function, and in fact should be quite a bit simpler than the code
 for `expand` and `fill`; I would have used bottom-up enumeration here if we
 didn't need the `expand` function later on!
+
+### Programming by Navigation, finally!
+
+Everything we've discussed so far has been about standard program semantics
+(evaluation) and program synthesis (specifications, satisfaction, and search).
+
+... More coming soon! :-) ...
