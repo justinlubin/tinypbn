@@ -11,7 +11,7 @@
 In any case, please feel free to email me at
 [justinlubin@berkeley.edu](mailto://justinlubin@berkeley.edu)
 to chat about your thoughts! I'm happy to discuss the "questions to ponder"
-peppered throughout the essay below or anything else you'd like to chat about!
+peppered throughout the essay below or anything else you'd like to chat about.
 
 * * *
 
