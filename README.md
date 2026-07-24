@@ -112,7 +112,7 @@ If you've never written a programming language before—congrats! You've just
 written your very first interpreter for a simple programming language. It all
 starts with a function like this!
 
-**Question to ponder.** What obstacle might we run into if we evaluate a very,
+**Question to ponder:** What obstacle might we run into if we evaluate a very,
 very large expression? (Try it!) How could we avoid this obstacle?
 
 ### Specifications, _a.k.a._ our notion of validity for expressions
@@ -125,8 +125,8 @@ expressions. We'll represent such a specification as a list of pairs, where:
 - The second component of the pair is an output value (integer) that a sketch
   should evaluate to in the given input environment.
 
-**Pause!** How would you implement a function that checks this notion of
-satisfaction?
+(**Pause!** How would you implement a function that checks this notion of
+satisfaction?)
 
 We can check if a sketch satisfies a specification by checking if evaluating it
 in each input environment results in the corresponding output value.
@@ -136,10 +136,10 @@ def satisfies(spec, sketch):
     return all(eval(env, sketch) == out for env, out in spec)
 ```
 
-**Question to ponder.** Using this notion of satisfaction, what kind(s) of
+**Question to ponder:** Using this notion of satisfaction, what kind(s) of
 specifications can sketches with holes in them satisfy?
 
-**Question to ponder.** We've discussed logical specifications and input-output
+**Question to ponder:** We've discussed logical specifications and input-output
 example specifications. What other kinds of specifications can you think of?
 Additionally, are there any variants of these two kinds of specification that
 seem interesting to you?
@@ -148,11 +148,12 @@ seem interesting to you?
 
 For simplicity, we'll make some restrictions about the possible expressions we'll
 generate. In particular, we'll only consider expressions:
-1. Whose size is at most 6
-2. Whose integer literals are restricted to 0, 1, 2, and 3
-3. Whose variables are restricted to the single variable `in`
 
-First, we can operationalize our notion of size.
+- With size is at most 6,
+- With integer literals restricted to 0, 1, 2, and 3, and
+- With variables restricted to the single variable `in`.
+
+First, let's operationalize "size."
 
 ```python
 def size(sketch):
@@ -161,11 +162,16 @@ def size(sketch):
     return 1
 ```
 
-Next, we get to the most complicated function in our implementation: top-down left-to-right
-expansion of our expression grammar. This function will take in a sketch and
-return a list of possible "expansions" of that sketch, where each expansion is
-the result of replacing the left-most hole in the sketch with all possible expression "heads" in our language,
-where a head is either an integer literal, variable, or the application of an operator to (the correct number of) holes.
+With that, we've arrived at the most complicated function in our implementation:
+top-down left-o-right expansion of our sketch grammar. This function will take
+in a sketch and return a list of possible "expansions" of that sketch, where
+each expansion is the result of replacing the _left-most hole_ in the sketch
+with all possible "immediate expressions" in our language, where an "immediate
+expression" is either:
+
+- An integer literal,
+- A variable, or
+- The application of an operator to the correct number of holes.
 
 ```python
 def expand(sketch):
@@ -202,19 +208,19 @@ Because of our restrictions at the start of this section, there are only
 finitely-many possible expressions. Therefore, because an expression only ever
 gets added to the worklist at most once, this algorithm will always terminate.
 
-**Exercise.** Prove that an expression only ever gets added to the worklist at most once.
+**Exercise:** Prove that an expression only ever gets added to the worklist at most once.
 
-**Exercise.** Prove that if there is a satisfying solution to the specification in the search space,
+**Exercise:** Prove that if there is a satisfying solution to the specification in the search space,
 `fill` will return such a solution.
 
-**Question to ponder.** What happens if there is no satisfying solution? How could you speed up this case?
+**Question to ponder:** What happens if there is no satisfying solution? How could you speed up this case?
 
-**Question to ponder.** What would happen if we removed the restrictions at the start of this section?
+**Question to ponder:** What would happen if we removed the restrictions at the start of this section?
 
-**Question to ponder.** Will adding more examples increase or decrease the running time of
+**Question to ponder:** Will adding more examples increase or decrease the running time of
 this algorithm? Are there ways that you could imagine tweaking this algorithm to change your answer to this question?
 
-**Exercise.** `fill`, as implemented, takes what is called a top-down term enumeration strategy.
+**Exercise:** `fill`, as implemented, takes what is called a top-down term enumeration strategy.
 Why do you think it's called that? Think about what a bottom-up strategy would look like and implement it.
 _Hint:_ The implementation should not rely on `expand` or any other helper function, and should be quite a bit simpler than the
 code we have here; I would have used bottom-up enumeration here if we didn't need the `expand` function later on!
