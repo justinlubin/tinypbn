@@ -39,12 +39,12 @@ still actually dealing with an underspecification. Consider the traditional
 logical specification for the venerable sorting algorithm taking in an array
 `in` and returning an array `out`:
 
-    ∀ i = 1, ..., len(out) - 1. out[i] < out[i + 1] ∧
-    ∃ permutation σ. out = in ◦ σ
+$$ (\forall i \in \{ 1, \ldots{}, \textsf{len}(\texttt{out}) \}.\ \texttt{out}[i] \leq \texttt{out}[i + 1]) \land (\exists \text{ permutation } \sigma.\ \texttt{out} = \texttt{in} \circ \sigma) $$
 
-This precise logical specification is satisfied by bubble sort, insertion sort,
-selection sort, merge sort, heap sort, quick sort, ...and so on! (Perhaps it's
-not so precise after all?)
+This logical specification is very precise: disregarding stability, it
+completely dictates the input-output behavior of a sorting algorithm. It's also
+satisfied by by bubble sort, insertion sort, selection sort, merge sort, heap
+sort, quick sort, ... and so on! (Perhaps it's not so precise after all?)
 
 In all of the above cases, we often want to arrive at a *particular* solution to
 the original underspecification. We can view this as a process of
