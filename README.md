@@ -63,7 +63,12 @@ Strong Soundness means you won't go down a rabbit hole of exploring invalid
 program space. Strong Completeness means the system won't take any possible
 solutions away from you.
 
-![TODO](pbn.png)
+It looks like this:
+
+![One round of interaction with Programming by Navigation. The system is
+required to present the user with only steps en route to a valid solution
+(Strong Soundness) while also providing enough steps to reach any valid solution
+(Strong Completeness).](pbn.png)
 
 To achieve these guarantees in practice can be
 [pretty](https://dl.acm.org/doi/10.1145/3729264)
@@ -287,7 +292,8 @@ between. The user interaction model will look as follows, with the step provider
 providing sets of steps $\Sigma$ and the step decider (the user) selecting a
 step $\sigma$ from $\Sigma$:
 
-![TODO](ux.png)
+![The step provider provides sets of steps for the step decider to select
+between. The process repeats until arriving at the desired expression.](ux.png)
 
 As we discussed at the start of this post, the most interesting part of step
 providers is that we will require them satisfy **Strong Soundness** and
