@@ -390,14 +390,14 @@ def pbn(spec):
     return sketch
 ```
 
-- **Question to ponder #16** We've spent a lot of time discussing how to
+- **Question to ponder #17** We've spent a lot of time discussing how to
 implement step _providers_, but what if the step _decider_ was not a "user" in
 the traditional sense? What if it was itself another program? In particular,
 consider the following step providers: a random number generator, a
 probabilistic model, an AI agent. Can you think of use-cases for each of these
 step providers? Can you think of other kinds of step deciders?
 
-- **Question to ponder #17** Programming by Navigation lets you navigate to
+- **Question to ponder #18** Programming by Navigation lets you navigate to
 particular solutions to original underspecifications. Can you construct an
 example specification and desired solution where `fill` will never give you the
 desired solution but Programming by Navigation will? Generalizing a bit,
@@ -423,7 +423,7 @@ and Strong Completeness.
 I hope I've enticed you to think about some of the questions to ponder
 throughout this post! Some of them are rather direct (_e.g._, #2, #14) but some
 of them lead to wide-open research areas that I'm excited to work on (_e.g._,
-#13, #16)!
+#13, #17)!
 
 What questions or thoughts do you have? I'd love to hear! Please do feel free
 to email me at [justinlubin@berkeley.edu](mailto://justinlubin@berkeley.edu) to
