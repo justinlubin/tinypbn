@@ -309,7 +309,7 @@ Then, given a current working expression $e$, we'll require two properties of
 the steps $\Sigma$ the step provider produces:
 
 - **Strong Soundness**: $\mathcal{C}(\sigma e) \neq \varnothing$ for all $\sigma \in \Sigma$.
-- **Strong Completeness**: $\bigcup_{\sigma \in \Sigma} \mathcal{C}(\sigma e) \supseteq \mathcal{C}(e) \ \setminus\ \{e\}$
+- **Strong Completeness**: $\bigcup_{\sigma \in \Sigma} \mathcal{C}(\sigma e) \supseteq \mathcal{C}(e) \ \setminus\ \\{e\\}$
 
 In English, the first property says that, no matter which step you select, the
 resulting completion is nonempty. The second property says that every reachable
