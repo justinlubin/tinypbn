@@ -302,7 +302,7 @@ To give a formal definition of Strong Soundness and Strong Completeness, it is
 helpful to formalize the idea we discussed just a moment ago: the "possible
 valid expressions you can reach." To capture this idea, we say that the
 _completion_ of an expression $e$ is
-$\mathcal{C}(e) = \{e' \mid e \preceq e' \land e' \textsf{ valid} \}$,
+$\mathcal{C}(e) = \\{e' \mid e \preceq e' \land e' \textsf{ valid} \\}$,
 where $e \preceq e'$ if there exists a step between $e$ and $e'$.
 
 Then, given a current working expression $e$, we'll require two properties of
